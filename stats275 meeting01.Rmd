@@ -1,0 +1,30 @@
+---
+title: "stats 275 brain project meeting 01"
+author: "Fulya Ozcan"
+date: "October 20, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+* Over the weekend:
+  1. Do premilinary explaratory analysis
+  2. Identify potential goals for each project
+  3. Specific questions of interest
+  4. Candidate models to try based on those
+  5. Look into survey models/data
+
+* By next Thursday:
+  1. Have a list of questions to ask Derek
+
+* Potential things can be done:
+	1. Prediction Model
+	2. Regression Model 
+	3. Explaratory/ Cluster Analysis
+	4. What types of data
+	5. What levels
+	6. VR vs SPECT
+	7. T-vals vs R-vals
+	8. Change in BDI scores--> Should we ask for the raw data rather than the categories
+	
