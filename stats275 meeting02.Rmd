@@ -1,0 +1,38 @@
+---
+title: "stats 275 brain project meeting 02"
+author: "Fulya Ozcan"
+date: "October 25, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+###Model:
+
+* Response:
+	. BDI_change=BDI_Post-BDI_Pre
+	. Relative Change= Change/Pre
+
+	. Responder = 1 if BDI_change in top 25%
+				= 0 else
+
+
+* Covariates: 
+	. SPECT Readings: 128 ROI's --> t-values: normalized from whole brain average
+											. gives better prective values than r-values
+								--> r-values: relative scale
+											. more stable
+								--> max & min 
+
+	. Visual Readings: Human interpretted
+	. Concentration SPECT
+
+	. Clinical: Age, race, gender, location
+	. Comorbidities: ADHD, OCD, addiction
+
+#### To do:
+
+* Check out t-SNE for visualization
+* Get slides together
+* Read http://odin.mdacc.tmc.edu/~mguindani/Papers/review_fMRI_rev.pdf for Bayesian fmri modeling
