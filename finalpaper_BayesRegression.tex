@@ -1,0 +1,138 @@
+%\documentclass[12pt,man,fignum,floatmark]{apa}
+\documentclass[12pt,doc]{apa}
+\usepackage{url,epsfig,apacite,lineno,booktabs,rotating,setspace,amsmath,bm}
+\usepackage{tabu}
+\usepackage{caption}
+\usepackage{fancyvrb,framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\interfootnotelinepenalty=10000
+\widowpenalty=10000
+\clubpenalty = 10000
+
+
+\title{Bayesian Logistic Regression Part}
+\author{Maime Guan}
+\affiliation{Department of Cognitive Sciences\\University of California, Irvine}
+
+
+\begin{document}
+
+\setcounter{page}{0}
+\pagestyle{plain}
+
+\maketitle
+
+\section{Bayesian Logistic Regression}
+
+To investigate the relationship between the SPECT image scans and some other covariates of interest, we fit three different logistic regression models to the data in a Bayesian framework using 'MCMCpack', software that facilitates MCMC-based computational Bayesian inference (Martin, Quinn, \& Park, 2016). We use uninformative priors for the coefficients of predictors in all three models because we have no prior information from existing literature on how these covariates relate to response to hollistic treatment of depression. To control for pre-BDI scores, we naturally include the pre-BDI scores per patient as a predictor in all three of our models.
+
+For our first logistic regression model, we only consider pre-BDI scores and the top eight baseline brain regions from the dimensionality-reduction analyses: left cerebellum 7B, right crus cerebellum 1, left superior temporal pole, right rectus, right cerebellum 9, right superior temporal lobe, vermis 3, and right superior occipital. The model equation 1 is given below, along with the estimates of each coefficient using exponentiated posterior sample means and 95\% credible intervals.
+
+\begin{equation}
+\log \left( \frac{p_{i}}{1-p_{i}} \right) = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}X_{2i} + \beta_{3}X_{3i} + \ldots + \beta_{9}X_{9i}
+\end{equation}
+where $X_{1i} \ldots X_{9i}$ are pre-BDI and the top 8 brain regions.
+\medskip
+
+\begin{tabular}{l c c}
+\multicolumn{3}{l}{Table 1. Summary of results from Model 1} \\
+
+& exp(means) & exp(95\% credible intervals) \\
+\hline
+Intercept & 0.312 & (0.049, 2.021) \\
+Pre-BDI & 1.009 & (0.990, 1.030) \\
+Left cerebellum 7B & 0.980 & (0.944, 1.018) \\Right crus cerebellum 1 & 1.030 & (0.989, 1.027) \\
+Left superior temporal pole & 1.015 & (0.949, 1.088) \\Right rectus & 1.020 & (0.980, 1.061) \\Right cerebellum 9 & 0.990 & (0.957, 1.024) \\Right superior temporal pole & 1.029 & (0.969, 1.094) \\\textbf{Vermis 3} & \textbf{0.964} & \textbf{(0.936, 0.993)} \\Right superior occipital & 1.002 & (0.960, 1.047) \\
+
+\end{tabular}
+
+The results of our Bayesian logistic regression analysis indicate that the only brain region out of the eight regions tested in our model that is weakly associated with odds of responding to treatment is Vermis 3. We estimate that each additional unit of baseline activation of Vermis 3 is associated with about a 3.6\% \emph{decrease} in the odds of response to treatment, after controlling for pre-BDI scores and the baseline activation of the other 7 brain regions. Furthermore, there is a 95\% probability that this association of Vermis 3 with odds of response to treatment is between a 0.7\% and 6.4\% decrease.
+
+In Model 2, we consider pre-BDI scores with some co-diagnoses of interest: anxiety disorder, ADHD, substance abuse disorder, frontal lobe dysfunction, diagnosed brain trauma, and PTSD. The equation for Model 2 is given below, along with results from our Bayesian logistic regression analysis.
+
+\begin{equation}
+\log \left( \frac{p_{i}}{1-p_{i}} \right) = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}X_{2i} + \beta_{3}X_{3i} + \ldots + \beta_{7}X_{7i}
+\end{equation}
+where $X_{1i} \ldots X_{7i}$ are pre-BDI and the 6 co-diagnoses of interest.
+\medskip
+
+\begin{tabular}{l c c}
+\multicolumn{3}{l}{Table 2. Summary of results from Model 2} \\
+
+& exp(means) & exp(95\% credible intervals) \\
+\hline
+Intercept & 1.297 & (0.580, 2.471) \\Pre-BDI & 1.010 & (0.992, 1.032) \\\textbf{Anxiety Disorder} & \textbf{0.613} & \textbf{(0.417, 0.957)} \\ADHD & 0.863 & (0.625, 1.195) \\Substance Abuse Disorder & 1.337 & (0.854, 2.195) \\Frontal Lobe Dysfunction & 0.872 & (0.635, 1.250) \\Diagnosed Brain Trauma & 0.879 & (0.631, 1.247) \\PTSD & 0.964 & (0.642, 1.427) \\
+
+\end{tabular}
+
+From these results, the only co-diagnosis out of the six that are tested in Model 2 that is associated with odds of response to treatment is anxiety disorder. After adjusting for the other 5 co-diagnoses, we estimate that being diagnosed with anxiety disorder in addition to depression is associated with about a 39\% \emph{decrease} in the odds of response to treatment, compared to not being diagnosed with anxiety. Furthermore, there is a 95\% probability that being diagnosed with anxiety is associated with between a 4.3\% and 58.3\% decrease in odds of response to treatment.
+
+Lastly, we consider a third and final Bayesian logistic regression model in which we include pre-BDI scores, the eight brain regions from Model 1, the six co-diagnoses from Model 2, compliance ratings, age, and gender. The equation of Model 3 is given below, along with the table of results from our Bayesian logistic regression analysis.
+
+\begin{equation}
+\log \left( \frac{p_{i}}{1-p_{i}} \right) = \beta_{0} + \beta_{1}X_{1i} + \beta_{2}X_{2i} + \beta_{3}X_{3i} + \ldots + \beta_{20}X_{20i}
+\end{equation}
+where $X_{1i} \ldots X_{20i}$ are pre-BDI, the top 8 brain regions, 6 co-diagnoses of interest, compliance ratings, age, and gender.
+\medskip
+
+\begin{tabular}{l c c}
+\multicolumn{3}{l}{Table 3. Summary of results from Model 3} \\
+
+& exp(means) & exp(95\% credible intervals) \\
+\hline
+Intercept & 0.343 & (0.069, 3.057) \\Pre-BDI & 1.014 & (0.992, 1.033) \\
+Left cerebellum 7B & 0.980 & (0.941, 1.023) \\
+Right crus cerebellum 1 & 1.038 & (0.998, 1.077) \\
+Left superior temporal pole & 1.024 & (0.956, 1.101) \\
+Right rectus & 1.013 & (0.973, 1.066) \\
+Right cerebellum 9 & 0.991 &(0.957, 1.024) \\
+Right superior temporal pole & 1.027 & (0.966, 1.089) \\
+\textbf{Vermis 3} & \textbf{0.959} & \textbf{(0.935, 0.984)} \\
+Right superior occipital & 1.000 & (0.960, 1.048) \\
+\textbf{Anxiety Disorder} & \textbf{0.638} & \textbf{(0.443, 0.922)} \\ADHD & 0.921 & (0.705, 1.277) \\
+Substance Abuse Disorder & 1.403 & (0.974, 1.980) \\Frontal Lobe Dysfunction & 0.819 & (0.581, 1.169) \\Diagnosed Brain Trauma & 0.922 & (0.665, 1.260) \\PTSD & 1.052 & (0.777, 1.500) \\Compliance: Not & 0.533 & (0.271, 1.109) \\Compliance: Somewhat & 0.837 & (0.499, 1.349) \\\textbf{Compliance: Very} & \textbf{2.131} & \textbf{(1.262, 3.585)} \\Age & 1.002 & (0.990, 1.013) \\Gender: Male & 1.186 & (0.830, 1.692) \\
+
+\end{tabular}
+
+Consistent with findings from Models 1 and 2, the results of our Bayesian logistic regression analysis of Model 3 show that Vermis 3 and anxiety disorder diagnosis are associated with the odds of response to treatment. After controlling all of the other covariates in the model, we estimate that each additional unit of the baseline activation of Vermis 3 is associated with about a 4.1\% \emph{decrease} in the odds of response to treatment. We also find a negative association between anxiety disorder and odds of response to treatment. Adjusting for all other covariates in the model, we estimate that being diagnosed with anxiety disorder is associated with about a 36.2\% decrease in odds of response to treatment. 
+
+A new finding from the analysis of Model 3 indicates that holding all other covariates constant, a self-report of being ``very compliant" with the treatment plan is associated with about a 113\% increase in the odds of response to treatment, compared to not giving a self-report on compliance to treatment. Furthermore, we find that age and gender are not associated with odds of response to treatment.
+
+All of the model results are based on 4 chains of 10,000 samples samples each. The chains were verified for convergence using the standard $\hat{R}$ statistic (Brooks \& Gelman, 1997).
+
+\section{Bayes Factors}
+In addition to estimating the coefficients of our models in a Bayesian framework, we can also quantify the evidence for each of our models by making pairwise comparisons between them using Bayes factors. Bayes factors are a standard Bayesian approach to model selection that implicitly controls for goodness-of-fit and model complexity. It is the degree of change from prior to posterior information given by the data. We compute the natural logarithm of the Bayes factors between each pairwise comparison of our three models. A positive log Bayes factor indicates evidence for the first model in the comparison, and a negative log Bayes factor indicates evidence for the second model. Standard interpretive boundaries at log-odds of 2, 6, and 10 correspond to ``moderate", ``strong", and ``very strong" (Kass \& Raftery, 1995). The table below shows the matrix of the natural log Bayes factors resulting from all 9 pairwise comparisons between Models 1, 2, and 3.
+\medskip
+
+\begin{tabular}{l| c c c}
+\multicolumn{4}{l}{Bayes factors between Models 1, 2, and 3} \\
+
+& Model 1 & Model 2 & Model 3 \\
+\hline
+Model 1 & 0.0 & -29.4 & 55.3 \\
+Model 2 & 29.4 & 0.0 & 84.8 \\
+Model 3 & -55.3 & -84.8 & 0.0
+
+\end{tabular}
+\medskip
+
+There is overwhelming evidence that Model 2 with just pre-BDI and 6 co-diagnoses is preferred over both Models 1 and 3. In particular, the saturated Model 3 with the most predictors is the worst because it overfits the response data. Model 1 with just pre-BDI and 8 brain regions is preferred over the saturated Model 3, but not preferred when compared to Model 2. These results indicate very strong evidence that baseline activation of the 8 brain regions do not provide more information if pre-BDI and co-diagnoses are already included in the model.
+
+
+
+\end{document}
+
+cite: Martin, Quinn, and Park (2016), Kass and Raftery (1995), Brooks and Gelman (1997)
+
+
+
+
+
+
+
+
+
